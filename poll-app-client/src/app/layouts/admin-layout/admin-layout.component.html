@@ -1,0 +1,21 @@
+<mat-sidenav-container autosize>
+    <mat-sidenav #sideNav [mode]="mobileQuery.matches ? 'over' : 'side'" [fixedInViewport]="mobileQuery.matches"
+                 [opened]="!mobileQuery.matches">
+      <div *ngIf="mobileQuery.matches" (click)="sideNav.toggle()" class="float-right mr-2 mt-2 mat-ripple" style="z-index: 99 !important;">
+        <mat-icon class="material-icons-outlined" style="color: #ffffff99 !important;">keyboard_backspace</mat-icon>
+      </div>
+                 <!-- [style.marginTop.px]="mobileQuery.matches ? 56 : 0"> -->
+      <app-sidebar (opcaoMenuSelecionada)="mobileQuery.matches ? sideNav.toggle() : null "></app-sidebar>
+    </mat-sidenav>
+    <mat-sidenav-content>
+      <navbar-cmp (sideNavToggle)="sideNav.toggle()"></navbar-cmp>
+      <main role="main" class="container-fluid pt-4">
+        <div class="row">
+          <div class="col-12">
+            <router-outlet></router-outlet>
+          </div>
+        </div>
+      </main>
+      <footer-cmp></footer-cmp>
+    </mat-sidenav-content>
+  </mat-sidenav-container>

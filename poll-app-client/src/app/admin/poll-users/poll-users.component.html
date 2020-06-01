@@ -1,0 +1,135 @@
+<div class="main-content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12">
+        <h4>MY POLLS</h4>
+        <h5>MY PUBLIC AND PRIVATE POLLS</h5>
+        <mat-divider></mat-divider>
+        <br />
+        <div class="card">
+          <div class="content table-responsive table-full-width">
+            <table class="table table-hover table-striped">
+              <thead>
+                <tr>
+                  <th>TITLE</th>
+                  <th>DESCRIPTION</th>
+                  <th>CREATED</th>
+                  <th>VOTE COUNT</th>
+                  <th>ONLY AUTHENTICATED</th>
+                  <th>SAME IP ALLOWED</th>
+                  <th>PRIVATE</th>
+                  <th>ACTION</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let poll of pagePoll?.content; let i = index">
+                  <td>{{ poll.title }}</td>
+                  <td>{{ poll.description }}</td>
+                  <td>{{ poll.postDate | amTimeAgo }}</td>
+                  <td>{{ countVotes(poll) }}</td>
+                  <td>
+                    <div class="checkbox">
+                      <input
+                        [attr.id]="'multipleAnswer' + i"
+                        type="checkbox"
+                        [(ngModel)]="poll.multipleAnswer"
+                      />
+                      <label [attr.for]="'multipleAnswer' + i"></label>
+                    </div>
+                  </td>
+                  <td>
+                    <div class="checkbox">
+                      <input
+                        [attr.id]="'sameIp' + i"
+                        type="checkbox"
+                        [(ngModel)]="poll.allowSameIp"
+                      /><label [attr.for]="'sameIp' + i"></label>
+                    </div>
+                  </td>
+                  <td>
+                    <div class="checkbox">
+                      <input
+                        [attr.id]="'nonPublic' + i"
+                        type="checkbox"
+                        [(ngModel)]="poll.nonPublic"
+                      /><label [attr.for]="'nonPublic' + i"></label>
+                    </div>
+                  </td>
+                  <td>
+                      <div class="d-flex flex-row justify-content-center">
+                    <button
+                      mat-icon-button
+                      type="button"
+                      color="primary"
+                      matTooltip="Go to Vote"
+                      style="outline: none;"
+                      [routerLink]="['/poll', poll.code]"
+                    >
+                      <mat-icon>bar_chart</mat-icon>
+                    </button>
+                    <button
+                      mat-icon-button
+                      type="button"
+                      matTooltip="Edit"
+                      color="primary"
+                      style="outline: none;"
+                      [routerLink]="['/poll/editor', poll.code]"
+                    >
+                      <mat-icon>edit</mat-icon>
+                    </button>
+                    <button
+                      mat-icon-button
+                      type="button"
+                      color="primary"
+                      matTooltip="Share to Clipboard"
+                      style="outline: none;"
+                      (click)="copyToClipboard(poll.code)"
+                    >
+                      <mat-icon>share</mat-icon>
+                    </button>
+                </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <div class="col-12 d-flex flex-row justify-content-center">
+            <button
+            mat-raised-button
+            type="button"
+            color="primary"
+            class="col-2"
+            matTooltip="Go to Vote"
+            style="outline: none; height:31px !important"
+            (click)="updatePolls()"
+          >
+              SAVE CHANGES
+            </button>
+            <nav class="col-9" aria-label="...">
+              <ul
+                style="margin-left: 180px; margin-top: 10px; color:#663ab7 !Important"
+                class="pagination"
+                *ngIf="pagePoll?.content"
+              >
+                <li
+                  *ngFor="
+                    let page of ' '.repeat(pagePoll.totalPages).split('');
+                    let i = index
+                  "
+                  (click)="onSelect(i)"
+                  [class.active]="i === selectedPage"
+                  class="page-item"
+                >
+                  <a class="page-link" style="cursor: pointer;background-color: #8186c1 !Important">{{ i }}</a>
+                </li>
+              </ul>
+            </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <br />
+    <br />
+    <br />
+  </div>
+</div>

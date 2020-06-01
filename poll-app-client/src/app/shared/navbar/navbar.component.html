@@ -1,0 +1,49 @@
+<mat-toolbar class="matToolbar">
+    <div>
+        <button mat-icon-button (click)="toggleSideNav()">
+            <mat-icon>menu</mat-icon>
+        </button>
+    </div>
+    <div class="optionsContainer">
+      <mat-nav-list class="toolOptions">
+
+        <mat-list-item *ngIf="authService.isAuthenticated()">
+          <a matLine [matMenuTriggerFor]="menu" class="d-flex align-items-center">
+            <span>{{ notificationMap?.size }} </span>  
+            <mat-icon class="material-icons-outlined">notifications</mat-icon>
+            <span *ngIf="!this.mobileQuery.matches">NOTIFICATIONS</span>
+          </a>
+
+            <mat-menu #menu="matMenu" xPosition="before">
+              <div *ngFor="let notification of notificationMap | keyvalue" >
+                <div mat-menu-item class="notification-menu" [routerLink]="'/poll/'+notification.key.poll.code">
+                  <span class="mt-0 notification-description">{{ notification.key.message }}({{ notification.value }})</span>
+                </div>
+                <mat-divider></mat-divider>
+              </div>
+            </mat-menu>
+
+        </mat-list-item>
+
+        <mat-list-item *ngIf="!authService.isAuthenticated()" routerLinkActive="active">
+            <a matLine class="d-flex align-items-center" routerLink="/login">
+              <mat-icon class="material-icons-outlined">login</mat-icon>
+              <span *ngIf="!this.mobileQuery.matches">LOGIN</span>
+            </a>
+        </mat-list-item>
+        <mat-list-item *ngIf="!authService.isAuthenticated()" routerLinkActive="active">
+            <a matLine class="d-flex align-items-center" routerLink="/signup">
+              <mat-icon class="material-icons-outlined">account_circle</mat-icon>
+              <span>SIGNUP!</span>
+            </a>
+        </mat-list-item>
+        <mat-list-item *ngIf="authService.isAuthenticated()">
+          <a matLine class="d-flex align-items-center" (click)="logout()">
+            <mat-icon class="material-icons-outlined">power_settings_new</mat-icon>
+            <span *ngIf="!this.mobileQuery.matches">LOGOUT</span>
+          </a>
+        </mat-list-item>
+
+      </mat-nav-list>
+    </div>
+</mat-toolbar>

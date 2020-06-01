@@ -1,0 +1,27 @@
+.cb-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: left;
+    flex-flow: row;
+  }
+
+  .mat-checkbox {
+    margin-left: 20px;
+  }
+
+  .cb-vertival {
+    flex-flow: column;
+  }
+
+  .btn-remove-options{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: left;
+    flex-flow: row;
+    align-items: initial;
+    align-content: initial;
+  }
+
+  .mat-checkbox-layout .mat-checkbox-label {
+    color: #888 !important;
+  }

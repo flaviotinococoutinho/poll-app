@@ -1,0 +1,43 @@
+@import url("https://fonts.googleapis.com/icon?family=Material+Icons|Material+Icons+Outlined");
+@import "~bootstrap/scss/functions";
+@import "~bootstrap/scss/variables";
+$enable-responsive-font-sizes: true !important;
+@import "~bootstrap/scss/bootstrap";
+
+html,
+body {
+  color: #888;
+  height: 100% !important;
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+table {
+  color: #888 !important;
+}
+
+a.page-link{
+  color: rgb(238, 234, 22) !important;
+}
+a.page-link:hover{  color: rgb(226, 226, 215) !important;}
+a.page-link:active{  color: rgb(226, 226, 215) !important;}
+page-item.active{
+  color: rgb(226, 226, 215) !important;
+}
+
+h1{
+  color: #a9b1ba !important;
+}
+
+h2{
+  color: #9299a1 !important;
+}
+
+h3,h4,h5 {
+color:  #898f96 !important;
+}
+
+.centralized {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

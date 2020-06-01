@@ -1,0 +1,90 @@
+
+mat-nav-list {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+
+  .title-sidebar{
+    font-size: 20px;
+    color: #c0c1c5;
+    margin-top: 25px;
+    margin-bottom: 20px;
+    text-align: center;
+    font-weight: 100;
+    filter: drop-shadow(2px 4px 6px #0a1065);
+  }
+
+  .shadow-drop-2-center {
+    -webkit-animation: shadow-drop-2-center 0.4s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+            animation: shadow-drop-2-center 0.4s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+  }
+
+ @-webkit-keyframes shadow-drop-2-center {
+  0% {
+    -webkit-transform: translateZ(0);
+            transform: translateZ(0);
+    -webkit-box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
+            box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
+  }
+  100% {
+    -webkit-transform: translateZ(50px);
+            transform: translateZ(50px);
+    -webkit-box-shadow: 0 0 20px 0px rgba(0, 0, 0, 0.35);
+            box-shadow: 0 0 20px 0px rgba(0, 0, 0, 0.35);
+  }
+}
+@keyframes shadow-drop-2-center {
+  0% {
+    -webkit-transform: translateZ(0);
+            transform: translateZ(0);
+    -webkit-box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
+            box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
+  }
+  100% {
+    -webkit-transform: translateZ(50px);
+            transform: translateZ(50px);
+    -webkit-box-shadow: 0 0 20px 0px rgba(0, 0, 0, 0.35);
+            box-shadow: 0 0 20px 0px rgba(0, 0, 0, 0.35);
+  }
+}
+
+
+  .menu-title {
+  //  font-family: 'Poppins', sans-serif;
+    color: #c5d0fd;
+    cursor: default;
+    pointer-events: none;
+  }
+  .menu-title:hover {
+    background-color: #959aaf;
+  }
+
+  [mat-list-item] {
+  //  font-family: 'Poppins', sans-serif;
+    color: #ffffff99;
+
+  }
+  [mat-list-item]:hover {
+    color: #FFFFFF;
+    background-color: #1e2432;
+      mat-icon{
+        color: #546bdf;
+      }
+  }
+
+  .nav-title{
+  //  font-family: 'Poppins', sans-serif;
+    color: #638db5;
+    cursor: default;
+    pointer-events: none;
+  }
+  .nav-title:hover{
+    color: #638db5;
+    background-color:#232939;
+
+  }
+}
+

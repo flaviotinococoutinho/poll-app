@@ -1,0 +1,57 @@
+<mat-nav-list style="width: 300px;">
+  <div class="centralized">
+    <p class="title-sidebar"
+    >
+      POLL APP
+    </p>
+  </div>
+  <div>
+    <ng-container *ngIf="!authService.isAuthenticated()">
+      <mat-list-item>
+        <a
+          class="mt-0 mb-0"
+          matLine
+          mat-list-item
+          routerLink="/signup"
+          (click)="this.opcaoMenuSelecionada.emit(true)"
+        >
+          <mat-icon class="mr-3">account_circle</mat-icon>
+          <span>SIGN UP!</span>
+        </a>
+      </mat-list-item>
+    </ng-container>
+    <ng-container *ngIf="!authService.isAuthenticated()">
+      <mat-list-item>
+        <a
+          class="mt-0 mb-0"
+          matLine
+          mat-list-item
+          routerLink="/login"
+          (click)="this.opcaoMenuSelecionada.emit(true)"
+        >
+          <mat-icon class="mr-3">login</mat-icon>
+          <span>LOGIN</span>
+        </a>
+      </mat-list-item>
+    </ng-container>
+    <ng-container *ngFor="let menuItem of menuItems">
+      <ng-container
+        *ngIf="!menuItem.authRequired || authService.isAuthenticated()"
+      >
+        <mat-list-item class="{{ menuItem.class }}">
+          <a
+            class="mt-0 mb-0"
+            matLine
+            mat-list-item
+            routerLinkActive="active"
+            [routerLinkActiveOptions]="{ exact: true }"
+            [routerLink]="menuItem.path"
+          >
+            <mat-icon class="mr-3">{{ menuItem.icon }}</mat-icon>
+            <span>{{ menuItem.title }}</span>
+          </a>
+        </mat-list-item>
+      </ng-container>
+    </ng-container>
+  </div>
+</mat-nav-list>

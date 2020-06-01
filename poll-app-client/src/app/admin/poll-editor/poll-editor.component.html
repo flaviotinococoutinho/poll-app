@@ -1,0 +1,125 @@
+<div class="center-container">
+  <div class="container-fluid">
+    <form (ngSubmit)="save()" #pollForm="ngForm">
+      <div
+        class="d-flex flex-column bd-highlight align-items-center justify-content-center"
+      >
+        <mat-form-field class="col-10" appearance="fill">
+          <mat-label>VOTE TITLE</mat-label>
+          <input
+            matInput
+            [(ngModel)]="poll.title"
+            placeholder="Poll Title"
+            required
+            minlength="3"
+            maxlength="250"
+            name="namePoll"
+          />
+        </mat-form-field>
+        <mat-form-field class="col-10" appearance="fill">
+          <mat-label>VOTE DESCRIPTION</mat-label>
+          <input
+            [(ngModel)]="poll.description"
+            [(ngModel)]="poll.description"
+            #namePoll="ngModel"
+            name="namePoll"
+            matInput
+            required
+            minlength="3"
+            maxlength="250"
+          />
+        </mat-form-field>
+      </div>
+
+      <div class="col-10 d-flex align-items-center justify-content-center">
+        <hr />
+
+        <div class="row cb-wrapper cb-vertival">
+          <section class="col-6">
+            <mat-checkbox
+              color="primary"
+              [(ngModel)]="poll.allowSameIp"
+              name="allowSameIp"
+              >ALLOW MULTIPLE VOTES FROM SAME IP</mat-checkbox
+            >
+          </section>
+          <section class="col-6">
+            <mat-checkbox
+              *ngIf="authService.isAuthenticated()"
+              color="primary"
+              [(ngModel)]="poll.nonPublic"
+              [disabled]="!authService.isAuthenticated()"
+              name="nonPublic"
+              >ACCESSIBLE ONLY VIA DIRECT LINK</mat-checkbox
+            >
+          </section>
+          <section class="col-6">
+            <mat-checkbox
+              *ngIf="authService.isAuthenticated()"
+              color="primary"
+              [(ngModel)]="poll.multipleAnswer"
+              [disabled]="!authService.isAuthenticated()"
+              name="onlyAuthenticated"
+              >ALLOW MULTIPLE VOTES</mat-checkbox
+            >
+          </section>
+        </div>
+
+        <hr />
+        <button
+          type="button"
+          class="col-3"
+          mat-raised-button
+          color="primary"
+          (click)="add()"
+        >
+          ADD OPTION
+        </button>
+      </div>
+      <div *ngFor="let vote of poll.votes; let i = index">
+        <div
+          class="d-flex flex-row bd-highlight align-items-center justify-content-center"
+        >
+          <mat-form-field class="col-10">
+            <mat-label>Option #{{ i + 1 }}</mat-label>
+            <input
+              matInput
+              required
+              minlength="2"
+              maxlength="250"
+              placeholder=""
+              [(ngModel)]="poll.votes[i].name"
+              #votePoll="ngModel"
+              name="'{{ 'votePoll' + i }}"
+            />
+            <button
+            matSuffix
+              color="warn"
+              class="my-0 py-0"
+              mat-icon-button
+              [autofocus]="false"
+              *ngIf="i > 1"
+              (click)="removeAnswer(i)"
+            >
+              <mat-icon>clear</mat-icon>
+            </button>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="d-flex justify-content-around">
+        <button
+          class="col-4"
+          type="submit"
+          mat-raised-button
+          color="primary"
+          [disabled]="!pollForm.form.valid"
+        >
+          UPDATE
+        </button>
+      </div>
+    </form>
+    <br />
+    <br />
+    <br />
+  </div>
+</div>

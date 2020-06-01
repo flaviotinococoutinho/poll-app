@@ -1,0 +1,73 @@
+
+//@font-face {
+//  font-family: 'Poppins';
+//  src: url("../../../assets/fonts/");
+//}
+
+.notification-menu {
+  line-height: unset!important;
+  height: 42px;
+  .notification-title{
+    font-size: 1.2rem;
+  }
+  .notification-description{
+    font-size: .85rem;
+  }
+  .notification-footer{
+    font-size: .7rem;
+  }
+}
+
+.matToolbar{
+  background-color: #ffffff;
+  color: #8a8c99;
+ // font-family: 'Poppins', sans-serif;
+
+  button[mat-icon-button]{
+    outline: none;
+    opacity: 0.6 ;
+  }
+  button[mat-icon-button]:hover {
+    background-color: #f0f2ff;
+    color: #8aBc44;
+    //color:#6479e2;
+    opacity:1;
+    transition: 0.2s;
+  }
+
+  .optionsContainer{
+    display: flex;
+    flex-grow: 1;
+    justify-content: flex-end;
+    mat-nav-list.toolOptions {
+      display: flex;
+      mat-list-item{
+     //   font-family: 'Poppins', sans-serif;
+        font-weight: 600;
+        font-size: .9rem;
+        opacity: 0.6 ;
+        mat-icon {
+          font-weight: 100;
+          color: #767885;
+        }
+        -webkit-touch-callout: none;
+        -webkit-user-select: none;
+        -khtml-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+      }
+      mat-list-item:hover {
+        background-color: #f0f2ff;
+        color: #8aBc44;
+        opacity:1;
+        transition: 0.2s;
+        mat-icon {
+          //color: #6479e2;
+          color: #8aBc44;
+        }
+      }
+    }
+  }
+
+}

@@ -1,0 +1,58 @@
+<div class="container">
+  <form 
+    name="form"
+    (ngSubmit)="f.form.valid && login()"
+    #f="ngForm"
+    novalidate
+    class="col-12"
+  >
+    <h3>LOGIN</h3>
+    <mat-divider></mat-divider>
+    <br />
+    <div class="d-flex flex-column bd-highlight mb-3 align-items-center justify-content-center">
+      <mat-form-field class="col-6" appearance="fill">
+        <mat-label>USERNAME</mat-label>
+        <input
+          matInput
+          maxLength="50"
+          name="username"
+          [(ngModel)]="model.username"
+          #username="ngModel"
+          required
+        />
+      </mat-form-field>
+      <mat-form-field class="col-6" appearance="fill">
+        <mat-label>PASSWORD</mat-label>
+        <input
+          matInput
+          [type]="hidepass ? 'password' : 'text'"
+          placeholder="PASSWORD"
+          [(ngModel)]="model.password"
+          required
+          minlength="3"
+          maxlength="10"
+          name="password"
+        />
+        <button
+          type="button"
+          mat-icon-button
+          matSuffix
+          (click)="hidepass = !hidepass"
+          [attr.aria-label]="'Hide password'"
+          [attr.aria-pressed]="hidepass"
+        >
+          <mat-icon>{{ hidepass ? "visibility_off" : "visibility" }}</mat-icon>
+        </button>
+      </mat-form-field>
+      <br />
+      <button
+        class="col-5"
+        type="submit"
+        mat-raised-button
+        color="primary"
+        [disabled]="loading"
+      >
+        LOGIN
+      </button></div>
+  </form>
+</div>

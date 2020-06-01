@@ -1,0 +1,66 @@
+<div class="main-content">
+  <div class="container-fluid">
+    <h3>{{ poll?.title | uppercase }}</h3>
+    <mat-divider></mat-divider>
+    <br />
+    <h5 class="description">DESCRIPTION</h5>
+    <span style="color: #666; padding-left: 8px; font-size: 16px;">{{
+      poll?.description
+    }}</span>
+    <br /><br />
+    <h5 class="description">CHOICES</h5>
+    <br />
+    <div class="row cb-wrapper cb-vertival">
+      <div *ngFor="let vote of poll?.votes; let i = index">
+        <section class="col-6">
+          <mat-checkbox
+            color="primary"
+            [attr.id]="vote.name"
+            [(ngModel)]="selectedItems[i]"
+            [disabled]="isDisabled(i)"
+            name="vote.name"
+            >{{ vote.name }}</mat-checkbox
+          >
+        </section>
+      </div>
+
+      <div class="col-12 mt-2 mb-2" style="width: 60%;">
+        <button
+          class="col-sm-12 col-md-4 col-lg-4 col-xl-4 mb-2 mb-ms-0 mb-lg-0 mb-lx-0 ml-md-4 ml-lg-4 mat-flat-button primary justify-content-center float-left"
+          mat-raised-button
+          color="primary"
+          type="button"
+          (click)="vote()"
+        >
+          VOTE
+        </button>
+        <button
+          class="col-sm-12 col-md-4 col-lg-4 col-xl-4 mb-2 mb-ms-0 mb-lg-0 mb-lx-0 ml-md-4 ml-lg-4 mat-flat-button primary justify-content-center float-left"
+          mat-raised-button
+          color="accent"
+          type="button"
+          (click)="copyToClipboard()"
+        >
+          SHARED LINK
+        </button>
+      </div>
+      <br />
+      <h3 class="mx-2">RESULTS</h3>
+      <mat-divider class="mx-2"></mat-divider>
+      <div class="col-12 mt-2 mb-4" style="width: 60%;">
+        <div class="chart-box" *ngIf="chartData">
+          <canvas
+            baseChart
+            [data]="chartData.data"
+            [legend]="true"
+            [labels]="chartData.label"
+            [chartType]="chartType"
+          ></canvas>
+        </div>
+        <div class="no-votes" *ngIf="!chartData">
+          No votes to show statistics yet
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
