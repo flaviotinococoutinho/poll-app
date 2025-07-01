@@ -21,7 +21,7 @@ export class PollService {
   }
 
   findAllPagedAuth(page: number) {
-    let urlWithParam = 'http://localhost:8080/api/poll/autorized?page=' + page + '&size=4';
+    let urlWithParam = 'http://localhost:8080/api/poll/authorized?page=' + page + '&size=4';
     return this.http.get<PagePoll>(urlWithParam);
   }
 

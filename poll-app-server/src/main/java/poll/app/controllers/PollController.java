@@ -43,11 +43,11 @@ public class PollController {
 		return pollService.findAllPublic(pageable);
 	}
 	
-	@PreAuthorize("isAuthenticated()")
-	@GetMapping("/autorized")
-	public Page<PollDTO> getAuthPolls(Pageable pageable) {
-		return pollService.findAllPublicAuth(pageable);
-	}
+        @PreAuthorize("isAuthenticated()")
+        @GetMapping("/authorized")
+        public Page<PollDTO> getAuthPolls(Pageable pageable) {
+                return pollService.findAllPublicAuth(pageable);
+        }
 	
 	@PreAuthorize("isAuthenticated()")
 	@GetMapping("/my/all")
