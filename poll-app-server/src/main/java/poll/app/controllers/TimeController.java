@@ -11,8 +11,9 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/api/time")
 @CrossOrigin
 public class TimeController {
-	@GetMapping
-	public LocalDateTime getTimeZone() {
-		return LocalDateTime.now();
-	}
+        @GetMapping
+        // Returns the current server date and time
+        public LocalDateTime getCurrentTime() {
+                return LocalDateTime.now();
+        }
 }
