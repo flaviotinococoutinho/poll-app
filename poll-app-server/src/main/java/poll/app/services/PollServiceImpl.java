@@ -129,10 +129,10 @@ public class PollServiceImpl implements PollService {
 
 	private String generateRandomString(int length) {
 		String str;
-		do {
-			str = RandomStringUtils.randomAlphanumeric(length);
-		} while (pollRepository.existsByCode(str) && voteRepository.existsByCode(str));
-		return RandomStringUtils.randomAlphanumeric(length);
-	}
+               do {
+                       str = RandomStringUtils.randomAlphanumeric(length);
+               } while (pollRepository.existsByCode(str) || voteRepository.existsByCode(str));
+               return str;
+       }
 
 }
