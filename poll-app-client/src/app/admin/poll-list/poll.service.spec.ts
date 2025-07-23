@@ -1,12 +1,35 @@
 import { TestBed } from '@angular/core/testing';
+import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 
 import { PollService } from './poll.service';
 
 describe('PollService', () => {
-  beforeEach(() => TestBed.configureTestingModule({}));
+  let service: PollService;
+  let httpMock: HttpTestingController;
+
+  beforeEach(() => {
+    TestBed.configureTestingModule({
+      imports: [HttpClientTestingModule],
+      providers: [PollService]
+    });
+
+    service = TestBed.inject(PollService);
+    httpMock = TestBed.inject(HttpTestingController);
+  });
+
+  afterEach(() => {
+    httpMock.verify();
+  });
 
   it('should be created', () => {
-    const service: PollService = TestBed.get(PollService);
     expect(service).toBeTruthy();
+  });
+
+  it('should call findAllPagedAuth with correct url', () => {
+    service.findAllPagedAuth(1).subscribe();
+
+    const req = httpMock.expectOne('http://localhost:8080/api/poll/authorized?page=1&size=4');
+    expect(req.request.method).toBe('GET');
+    req.flush({});
   });
 });
