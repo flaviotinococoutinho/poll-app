@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { PagePoll } from '../../models/page-poll.model';
 import { Poll } from '../../models/poll.model';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +14,7 @@ export class PollService {
   constructor(
     private http: HttpClient
   ) {
-    this.url = 'http://localhost:8080/api/poll/';
+    this.url = environment.apiUrl + '/api/poll/';
   }
 
   findAll() {
@@ -21,17 +22,17 @@ export class PollService {
   }
 
   findAllPagedAuth(page: number) {
-    let urlWithParam = 'http://localhost:8080/api/poll/authorized?page=' + page + '&size=4';
+    let urlWithParam = environment.apiUrl + '/api/poll/authorized?page=' + page + '&size=4';
     return this.http.get<PagePoll>(urlWithParam);
   }
 
   findAllPaged(page: number) {
-    let urlWithParam = 'http://localhost:8080/api/poll?page=' + page + '&size=4';
+    let urlWithParam = environment.apiUrl + '/api/poll?page=' + page + '&size=4';
     return this.http.get<PagePoll>(urlWithParam);
   }
 
   findByUser(page: number){
-    let urlWithParam= 'http://localhost:8080/api/poll/my/all?page=' + page + '&size=4';
+    let urlWithParam= environment.apiUrl + '/api/poll/my/all?page=' + page + '&size=4';
     return this.http.get<PagePoll>(urlWithParam);
   }
 
@@ -56,6 +57,6 @@ export class PollService {
   }
 
   getTime(){
-    return this.http.get('http://localhost:8080/api/time');
+    return this.http.get(environment.apiUrl + '/api/time');
   }
 }

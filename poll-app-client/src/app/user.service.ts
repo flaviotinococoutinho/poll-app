@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { User } from './models/user.model';
+import { environment } from '../environments/environment';
 //import { User } from './user-registration/user-registration.component';
 
 @Injectable()
@@ -10,7 +11,7 @@ export class UserService {
   private usersUrl: string;
 
   constructor(private http: HttpClient) {
-    this.usersUrl = 'http://localhost:8080/api/users/';
+    this.usersUrl = environment.apiUrl + '/api/users/';
   }
 
   public save(user: User) {
@@ -35,7 +36,7 @@ export class UserService {
   }
 
   public isLoginCorrect(username: string, password: string) {
-    return this.http.post<Observable<boolean>>('http://localhost:8080/api/users/login', {
+    return this.http.post<Observable<boolean>>(environment.apiUrl + '/api/users/login', {
       username: username,
       password: password,
       passwordConfirm: password

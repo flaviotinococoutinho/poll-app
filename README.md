@@ -4,6 +4,30 @@ Client: Angular 9
 Server: Spring Boot
 
 
+## Running with Docker
+
+Ensure you have [Docker](https://www.docker.com/) and
+[Docker Compose](https://docs.docker.com/compose/) installed. The project
+includes a `docker-compose.yml` configuration and helper scripts under the
+`scripts/` directory.
+
+To build and start all services run:
+
+```bash
+./scripts/start.sh
+```
+
+This will start MySQL, the Spring Boot server and the Angular client. The
+client will be available at [http://localhost:4200](http://localhost:4200) and
+the API at [http://localhost:8080](http://localhost:8080).
+
+Stop the environment with:
+
+```bash
+./scripts/stop.sh
+```
+
+
 
 ## APP FOR POLLS
 
